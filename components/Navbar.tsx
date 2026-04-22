@@ -3,10 +3,10 @@ import { Box } from "lucide-react";
 import Button from "./ui/Button";
 
 const Navbar = () => {
-  const { isSignIn, username, signIn, signOut } =
+  const { isSignedIn, username, signIn, signOut } =
     useOutletContext<AuthContext>();
   const handleAuthClick = async () => {
-    if (isSignIn) {
+    if (isSignedIn) {
       try {
         await signOut();
       } catch (e) {
@@ -36,7 +36,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="actions">
-          {isSignIn ? (
+          {isSignedIn ? (
             <>
               <span className="greeting">
                 {username ? `Hi ${username}` : "Sign in"}

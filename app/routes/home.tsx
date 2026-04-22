@@ -1,19 +1,33 @@
-import { ArrowRight, ArrowUpRight, Clock, Upload } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Clock,
+  Upload as UploadIcon,
+} from "lucide-react";
 import Navbar from "../../components/Navbar";
 import type { Route } from "./+types/home";
 import Button from "../../components/ui/Button";
-import { useOutletContext } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
+import Upload from "../../components/Upload";
 
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Roomify | AI-Powered Room Design" },
-    { name: "description", content: "Build beautiful spaces at the speed of thought." },
+    {
+      name: "description",
+      content: "Build beautiful spaces at the speed of thought.",
+    },
   ];
 }
 
 export default function Home() {
-  const { isSignIn } = useOutletContext<AuthContext>();
-
+  const { isSignedIn } = useOutletContext<AuthContext>();
+  const navigate = useNavigate();
+  const handleUploadComplete = async (base64Data: string) => {
+    const newId = Date.now().toString();
+    navigate(`/visualizer/${newId}`);
+    return true;
+  };
   return (
     <div className="home">
       <Navbar />
@@ -35,9 +49,9 @@ export default function Home() {
         </p>
 
         <div className="actions">
-          {isSignIn ? (
-            <a href="/visualizer" className="cta">
-              Go to Visualizer <ArrowRight className="icon" />
+          {isSignedIn ? (
+            <a href="#upload" className="cta">
+              Get Started <ArrowRight className="icon" />
             </a>
           ) : (
             <a href="#upload" className="cta">
@@ -56,14 +70,14 @@ export default function Home() {
           <div className="upload-card">
             <div className="upload-head">
               <div className="upload-icon">
-                <Upload className="icon" />
+                <UploadIcon className="icon" />
               </div>
 
               <h3>Upload your floor plan</h3>
               <p>Supports JPG, PNG, formats up to 10MB</p>
             </div>
 
-            <p>Upload images</p>
+            <Upload onComplete={handleUploadComplete} />
           </div>
         </div>
       </section>
