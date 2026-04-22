@@ -292,47 +292,47 @@
 
     .content {
       @apply w-full max-w-6xl grid grid-cols-1 gap-6;
-    }
 
-    .panel {
-      @apply bg-white rounded-xl border border-zinc-200 shadow-2xl overflow-hidden;
+      .panel {
+        @apply bg-white rounded-xl border border-zinc-200 shadow-2xl overflow-hidden;
 
-      .panel-header {
-        @apply flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-5 border-b border-zinc-100;
+        .panel-header {
+          @apply flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-5 border-b border-zinc-100;
 
-        .panel-meta {
-          p {
-            @apply text-xs font-mono uppercase tracking-widest text-zinc-400;
+          .panel-meta {
+            p {
+              @apply text-xs font-mono uppercase tracking-widest text-zinc-400;
+            }
+
+            h2 {
+              @apply text-2xl font-serif font-bold text-black;
+            }
+
+            h3 {
+              @apply text-lg font-serif font-bold text-black;
+            }
+
+            .note {
+              @apply text-xs text-zinc-500 mt-1;
+            }
           }
 
-          h2 {
-            @apply text-2xl font-serif font-bold text-black;
-          }
+          .panel-actions {
+            @apply flex flex-wrap items-center gap-3;
 
-          h3 {
-            @apply text-lg font-serif font-bold text-black;
-          }
+            .export {
+              @apply bg-primary text-white hover:bg-orange-600 h-9 border-none shadow-sm;
+            }
 
-          .note {
-            @apply text-xs text-zinc-500 mt-1;
-          }
-        }
-
-        .panel-actions {
-          @apply flex flex-wrap items-center gap-3;
-
-          .export {
-            @apply bg-primary text-white hover:bg-orange-600 h-9 border-none shadow-sm;
-          }
-
-          .share {
-            @apply bg-black text-white h-9 shadow-sm hover:bg-zinc-800;
+            .share {
+              @apply bg-black text-white h-9 shadow-sm hover:bg-zinc-800;
+            }
           }
         }
       }
 
       .render-area {
-        @apply relative bg-zinc-100 min-h-105;
+        @apply relative bg-zinc-100 min-h-105 rounded-xl border border-zinc-200 shadow-2xl overflow-hidden;
 
         .render-img {
           @apply w-full h-full object-contain transition-all duration-700 opacity-100 scale-100;

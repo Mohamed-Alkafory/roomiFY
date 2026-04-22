@@ -25,7 +25,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
 ];
 
@@ -48,7 +48,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 const DEFAULT_AUTH_USER: AuthState = {
   isSignedIn: false,
-  username: null,
+  userName: null,
   userId: null,
 };
 export default function App() {
@@ -58,7 +58,7 @@ export default function App() {
       const user = await getCurrentUser();
       setAuthState({
         isSignedIn: !!user,
-        username: user?.username || null,
+        userName: user?.username || null,
         userId: user?.uuid || null,
       });
       return !!user;
