@@ -16,7 +16,7 @@ const Upload = ({ onComplete }: UploadProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
-  
+
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const { isSignedIn } = useOutletContext<AuthContext>();
@@ -41,7 +41,7 @@ const Upload = ({ onComplete }: UploadProps) => {
       setProgress(0);
 
       const reader = new FileReader();
-      
+
       reader.onerror = () => {
         setError("Failed to read file. Please try again.");
         setFile(null);
@@ -51,7 +51,7 @@ const Upload = ({ onComplete }: UploadProps) => {
         const base64Data = reader.result as string;
 
         if (intervalRef.current) clearInterval(intervalRef.current);
-        
+
         intervalRef.current = setInterval(() => {
           setProgress((prev) => {
             const next = prev + PROGRESS_INCREMENT;
@@ -66,7 +66,7 @@ const Upload = ({ onComplete }: UploadProps) => {
           });
         }, PROGRESS_INTERVAL_MS);
       };
-      
+
       reader.readAsDataURL(selectedFile);
     },
     [isSignedIn, onComplete],
@@ -130,7 +130,9 @@ const Upload = ({ onComplete }: UploadProps) => {
                 : "Sign in or sign up with Puter to upload"}
             </p>
             {error ? (
-              <p className="error-text text-red-500 text-xs mt-1 font-bold">{error}</p>
+              <p className="error-text text-red-500 text-xs mt-1 font-bold">
+                {error}
+              </p>
             ) : (
               <p className="help">Maximum file size 50 MB.</p>
             )}
@@ -163,4 +165,3 @@ const Upload = ({ onComplete }: UploadProps) => {
   );
 };
 export default Upload;
-
